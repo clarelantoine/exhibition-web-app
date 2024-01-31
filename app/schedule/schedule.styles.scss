@@ -1,0 +1,199 @@
+.schedule {}
+
+.schedule__header {
+    max-width: 1140px;
+    display: flex;
+    flex-direction: row;
+    margin: 20px auto 50px auto;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+    .logout {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+        cursor: pointer;
+
+        &:hover {
+            // text-decoration: underline;
+            color: #6CBD4A;
+        }
+
+        svg {
+            font-size: 30px;
+        }
+
+    }
+}
+
+.logo {
+    position: relative;
+    width: 150px;
+    height: 100px;
+    user-select: none;
+    pointer-events: none;
+
+    img {
+        object-fit: contain;
+    }
+
+}
+
+.schedule__wrapper {
+    max-width: 1140px;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    gap: 100px;
+}
+
+.schedule__days {
+    font-family: 'Dinnextw1g_medium', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 250px;
+}
+
+.schedule__days__item {
+    text-transform: uppercase;
+    background: #2A5968;
+    padding: 20px 0;
+    text-align: center;
+
+    &.active {
+        background: #6CBD4A;
+    }
+}
+
+.schedule__rooms {
+
+    flex-grow: 1;
+    // flex-grow: 0.5;
+}
+
+.rooms {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 25px;
+    // max-width: 500px;
+    margin: auto;
+
+    .room__navigation__arrow {
+        background: #2A5968;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+
+        &:hover {
+            background: #748D93;
+        }
+    }
+
+    .room__name {
+        font-family: 'Dinnextw1g_medium', sans-serif;
+        text-transform: uppercase;
+    }
+
+}
+
+.meetings {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+
+    .meeting__card {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 5px;
+        padding: 20px;
+        border-left: 10px solid #6CBD4A;
+        background: #2A5968;
+
+        .meeting__detail {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            svg {
+                fill: #6CBD4A;
+            }
+
+        }
+    }
+}
+
+
+/* Mobile */
+@media (max-width: 700px) {
+
+    .schedule {
+        padding: 0 20px;
+    }
+
+    .schedule__wrapper {
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 50px;
+    }
+
+    .schedule__days {
+        flex-direction: row;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .schedule__days__item {
+        flex-grow: 1;
+        padding: 15px 0;
+    }
+
+    .schedule__header {
+        margin: 20px auto 30px auto;
+
+        .logout {
+            gap: 5px;
+            margin-top: 5px;
+
+            svg {
+                font-size: 25px;
+            }
+        }
+    }
+
+    .logo {
+        position: relative;
+        width: 100px;
+        height: 70px;
+        user-select: none;
+        pointer-events: none;
+
+        img {
+            object-fit: contain;
+        }
+
+    }
+
+    .meetings {
+        .meeting__card {
+            flex-direction: column;
+        }
+    }
+
+
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {}

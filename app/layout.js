@@ -1,8 +1,9 @@
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
+// import {Dinnextw1g} from "@/public/fonts/dinnextw1g_medium.woff"
 import "./globals.scss";
 import { UserProvider } from "@/contexts/user.context";
 
-const inter = Inter({ subsets: ["latin"] });
+// const dinnextw1g = Dinnextw1g({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -13,7 +14,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <UserProvider>
           {children}
         </UserProvider>

@@ -1,10 +1,12 @@
 'use client'
 
 import Image from "next/image";
-import styles from "./login-form.module.scss";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "@/contexts/user.context";
 import { useRouter } from "next/navigation";
+
+import "./login-form.styles.scss";
+
 
 const defaultFormFields = {
   username: '',
@@ -45,8 +47,8 @@ export default function LoginForm() {
   }
 
   return (
-    <main className={styles.main}>
-      <div className={styles.helicopter}>
+    <main className="main">
+      {/* <div className={styles.helicopter}>
         <Image 
           src="/images/helicopter.png"
           fill
@@ -59,11 +61,11 @@ export default function LoginForm() {
           fill
           alt="truck"
         />
-      </div>
+      </div> */}
       <div className="home">
-        <div className={styles.login__container}>
+        <div className="login__container">
         
-          <figure className={styles.logo}>
+          <figure className="logo">
           <Image
             src='/images/logo.png' 
             fill
@@ -72,17 +74,19 @@ export default function LoginForm() {
           />
           </figure>
           
-          <form className={styles.login__form} onSubmit={handleSubmit}>
+          <form className="login__form" onSubmit={handleSubmit}>
             <input 
               type="text" 
-              name="username" 
+              name="username"
+              placeholder="Username"
               value={username}
               onChange={handleChange}
               required
             />
             <input 
               type="password" 
-              name="password" 
+              name="password"
+              placeholder="Password"
               value={password}
               onChange={handleChange}
               required
