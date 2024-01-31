@@ -3,7 +3,7 @@ import path from 'path'
 
 export async function GET() {
     // Get the path of the json file
-    const filePath = path.join(process.cwd(), 'json/data.json');
+    const filePath = path.join(process.cwd(), '/tmp/data.json');
     // Read the json file
     const jsonData = await fsPromises.readFile(filePath);
     // Parse data as json
