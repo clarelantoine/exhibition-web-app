@@ -3,15 +3,13 @@ import path from 'path'
 
 export async function GET() {
     // Get the path of the json file
-    const filePath = path.join(process.cwd(), '/tmp/data.json');
+    const filePath = path.join(process.cwd(), 'json/data.json');
     // Read the json file
-    if(filePath) {
-        const jsonData = await fsPromises.readFile(filePath);
+    const jsonData = await fsPromises.readFile(filePath);
     // Parse data as json
     const objectData = JSON.parse(jsonData);
 
     const meetings = objectData.VentuzXml.Meeting
 
     return Response.json({meetings})
-    }
 }
