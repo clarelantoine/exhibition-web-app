@@ -4,6 +4,9 @@ import path from "path";
 import { writeFile } from "fs/promises";
 import { uploadJSONFileToStorage } from "@/lib/firebase";
 
+export const revalidate = 0
+
+
 // Define the POST handler for the file upload
 export const POST = async (req, res) => {
   // Parse the incoming form data
@@ -13,8 +16,10 @@ if(req.method === "POST") {
 
     const data = await req.json();
 
+    console.log(data)
+
     try {
-        uploadJSONFileToStorage(data);
+        await uploadJSONFileToStorage(data);
         
         // Return a JSON response with a success message and a 201 status code
         return NextResponse.json({ Message: "Success", status: 201 });

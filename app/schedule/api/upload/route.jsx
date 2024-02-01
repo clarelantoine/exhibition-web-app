@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 import path from "path";
 import { writeFile } from "fs/promises";
 
+export const revalidate = 0
+
 // Define the POST handler for the file upload
 export const POST = async (req, res) => {
   // Parse the incoming form data

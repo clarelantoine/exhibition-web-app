@@ -1,6 +1,8 @@
 import { getJSONFileFromStorage } from '@/lib/firebase';
 import axios from 'axios';
 
+export const revalidate = 0
+
 export async function GET() {
 
     const dataFileURL = await getJSONFileFromStorage()

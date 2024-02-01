@@ -22,9 +22,9 @@ export const ScheduleProvider = ({children}) => {
         getSchedulesData(setSchedules)
     }, [])
     
-    useEffect(() => {
-        console.log(schedules)
-    }, [schedules])
+    // useEffect(() => {
+    //     console.log(schedules)
+    // }, [schedules])
 
 
 

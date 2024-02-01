@@ -1,10 +1,6 @@
 'use client'
 
-import { UserContext } from "@/contexts/user.context";
-import { fetcher } from "@/lib/fetcher";
 import Link from "next/link";
-import { useContext } from "react";
-import useSWR from 'swr'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -12,19 +8,56 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 
 import './schedule.styles.scss'
-import { getJSONFileFromStorage, getMeetingSchedule, uploadJSONFileToStorage } from "@/lib/firebase";
+import { getMeetingSchedule } from "@/lib/firebase";
+import { useContext, useEffect, useState } from "react";
+import { ScheduleContext } from "@/contexts/schedule.context";
 
 export default function Schedule () {
+    const {schedules} = useContext(ScheduleContext)
 
-    const data = getMeetingSchedule()
+    const {meetings, setMeetings} = useState(null)
+    const [day, setDay] = useState(1)
+
+
+
+
+    const handleDayChange = (event) => {
+
+        event.preventDefault()
+
+        const {dataset} = event.target
+
+        document.querySelectorAll('.schedule__days__item').forEach(item => {
+            item.classList.remove('active')
+        })
+
+        event.target.classList.add('active')
+        console.log(dataset.day);
+
+        setDay[dataset.day]
+    }
+
+    const getSelectedMeetingsDay = (day) => {
+        // const selectedMeetingsDay = schedules.filter(item => {
+        //     if(item.Schedule)
+        // })
+
+        return schedules.map(item => {
+            return item
+        })
+    }
+
+    useEffect(() => {
+        console.log(getSelectedMeetingsDay())
+    }, [day])
 
     return (
         <div className="schedule__wrapper">
             <aside className="schedule__days">
-                <Link href="#" className="schedule__days__item active">Day 1</Link>
-                <Link href="#" className="schedule__days__item">Day 2</Link>
-                <Link href="#" className="schedule__days__item">Day 3</Link>
-                <Link href="#" className="schedule__days__item">Day 4</Link>
+                <Link href="#" className="schedule__days__item active" data-day="1" onClick={handleDayChange}>Day 1</Link>
+                <Link href="#" className="schedule__days__item" data-day="2" onClick={handleDayChange}>Day 2</Link>
+                <Link href="#" className="schedule__days__item" data-day="3" onClick={handleDayChange}>Day 3</Link>
+                <Link href="#" className="schedule__days__item" data-day="4" onClick={handleDayChange}>Day 4</Link>
             </aside>
             <main className="schedule__rooms">
                 <div className="rooms">
