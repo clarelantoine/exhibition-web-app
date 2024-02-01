@@ -1,4 +1,9 @@
-.schedule {}
+.schedule__loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 .schedule__header {
     max-width: 1140px;
@@ -19,7 +24,6 @@
         cursor: pointer;
 
         &:hover {
-            // text-decoration: underline;
             color: #6CBD4A;
         }
 
@@ -71,9 +75,7 @@
 }
 
 .schedule__rooms {
-
     flex-grow: 1;
-    // flex-grow: 0.5;
 }
 
 .rooms {
@@ -82,7 +84,6 @@
     align-items: center;
     justify-content: space-between;
     font-size: 25px;
-    // max-width: 500px;
     margin: auto;
 
     .room__navigation__arrow {

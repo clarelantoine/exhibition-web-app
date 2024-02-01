@@ -12,62 +12,6 @@
         "Name": "Name",
         "Duration": "55",
         "Company": "Company"
-      },
-      {
-        "MeetingRoom": "MeetingRoom01",
-        "Schedule": "15/02/24 11:40",
-        "Email": "Email3",
-        "Name": "Name3",
-        "Duration": "55",
-        "Company": "Company3"
-      },
-      {
-        "MeetingRoom": "MeetingRoom01",
-        "Schedule": "15/02/24 11:45",
-        "Email": "Email3",
-        "Name": "Name3",
-        "Duration": "55",
-        "Company": "Company3"
-      },
-      {
-        "MeetingRoom": "MeetingRoom02",
-        "Schedule": "15/02/24 11:45",
-        "Email": "Email3",
-        "Name": "Name3",
-        "Duration": "55",
-        "Company": "Company3"
-      },
-      {
-        "MeetingRoom": "MeetingRoom03",
-        "Schedule": "15/02/24 11:45",
-        "Email": "Email3",
-        "Name": "Name3",
-        "Duration": "55",
-        "Company": "Company3"
-      },
-      {
-        "MeetingRoom": "MeetingRoom01",
-        "Schedule": "15/02/24 11:46",
-        "Email": "Email3",
-        "Name": "Name3",
-        "Duration": "55",
-        "Company": "Company3"
-      },
-      {
-        "MeetingRoom": "MeetingRoom01",
-        "Schedule": "15/02/24 11:47",
-        "Email": "Email3",
-        "Name": "Name3",
-        "Duration": "55",
-        "Company": "Company3"
-      },
-      {
-        "MeetingRoom": "MeetingRoom01",
-        "Schedule": "15/02/24 11:49",
-        "Email": "Email3",
-        "Name": "Name3",
-        "Duration": "55",
-        "Company": "Company3"
       }
     ]
   }

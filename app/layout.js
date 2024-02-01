@@ -1,5 +1,6 @@
 // import { Inter } from "next/font/google";
 // import {Dinnextw1g} from "@/public/fonts/dinnextw1g_medium.woff"
+import { ScheduleProvider } from "@/contexts/schedule.context";
 import "./globals.scss";
 import { UserProvider } from "@/contexts/user.context";
 
@@ -16,7 +17,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <UserProvider>
-          {children}
+          <ScheduleProvider>
+            {children}
+          </ScheduleProvider>
         </UserProvider>
       </body>
     </html>

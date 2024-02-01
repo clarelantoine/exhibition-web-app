@@ -12,36 +12,12 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 
 import './schedule.styles.scss'
-// import RoomSchedule from "@/components/room-schedule/room-schedule.component";
+import { getJSONFileFromStorage, getMeetingSchedule, uploadJSONFileToStorage } from "@/lib/firebase";
 
 export default function Schedule () {
 
-    const {handleUserLogout} = useContext(UserContext)
-    const { data, error, isLoading } = useSWR('/schedule/api/data', fetcher)
-    // const meetings = data.meetings
-    if(data) {
-        // console.log(data.meetings);
-        const meetings = data.meetings
-    // const rooms = meetings.reduce((acc, room) => {
-    //     const { MeetingRoom, Schedule } = room;
-    //     acc[MeetingRoom.toLowerCase()] = Schedule;
-    //     return acc;
-    // }, {})
+    const data = getMeetingSchedule()
 
-    const rooms = meetings.reduce((acc, meeting) => {
-        let {MeetingRoom, Schedule} = meeting;
-        return {...acc, [MeetingRoom]: [...(acc[MeetingRoom] || []), meeting]};
-    }, {});
-
-    
-
-    Object.keys(rooms).map((room) => {
-        console.log(room);
-    })
-    
-    }
-    
-    
     return (
         <div className="schedule__wrapper">
             <aside className="schedule__days">

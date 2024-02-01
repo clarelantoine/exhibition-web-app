@@ -1,15 +1,19 @@
-import fsPromises from 'fs/promises';
-import path from 'path'
+import { getJSONFileFromStorage } from '@/lib/firebase';
+import axios from 'axios';
 
 export async function GET() {
-    // Get the path of the json file
-    const filePath = path.join(process.cwd(), 'json/data.json');
-    // Read the json file
-    const jsonData = await fsPromises.readFile(filePath);
-    // Parse data as json
-    const objectData = JSON.parse(jsonData);
 
-    const meetings = objectData.VentuzXml.Meeting
+    const dataFileURL = await getJSONFileFromStorage()
 
-    return Response.json({meetings})
+    if (dataFileURL) {
+
+        const dataFileJSON = await axios.get(dataFileURL).then((response) => {
+            return response.data
+        })
+    
+        const meetings = dataFileJSON.VentuzXml.Meeting
+        
+        return Response.json(meetings)
+    }
+        
 }

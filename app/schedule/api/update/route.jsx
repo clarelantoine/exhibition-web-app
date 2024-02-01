@@ -2,40 +2,48 @@
 import { NextResponse } from "next/server";
 import path from "path";
 import { writeFile } from "fs/promises";
+import { uploadJSONFileToStorage } from "@/lib/firebase";
 
 // Define the POST handler for the file upload
 export const POST = async (req, res) => {
   // Parse the incoming form data
-  const formData = await req.formData();
+//   
 
-  // Get the file from the form data
-  const file = formData.get("file");
+if(req.method === "POST") {
 
-  // Check if a file is received
-  if (!file) {
-    // If no file is received, return a JSON response with an error and a 400 status code
-    return NextResponse.json({ error: "No files received." }, { status: 400 });
-  }
+    const data = await req.json();
 
-  // Convert the file data to a Buffer
-  const buffer = Buffer.from(await file.arrayBuffer());
+    try {
+        uploadJSONFileToStorage(data);
+        
+        // Return a JSON response with a success message and a 201 status code
+        return NextResponse.json({ Message: "Success", status: 201 });
+    } catch (error) {
+        // If an error occurs during file writing, log the error and return a JSON response with a failure message and a 500 status code
+        console.log("Error occurred ", error);
+        return NextResponse.json({ Message: "Failed", status: 500 });
+    }
+}
 
-  // Replace spaces in the file name with underscores
-  const filename = file.name.replaceAll(" ", "_");
-  console.log(filename);
+    // const data = await req.json();
+    // console.log(data);
+    // return new NextResponse("Hello, Next.js!");
 
-  try {
-    // Write the file to the specified directory (public/assets) with the modified filename
-    await writeFile(
-      path.join(process.cwd(), "jsonUpload/" + filename),
-      buffer
-    );
+//   // Get the file from the form data
+//   const file = formData.get("file");
 
-    // Return a JSON response with a success message and a 201 status code
-    return NextResponse.json({ Message: "Success", status: 201 });
-  } catch (error) {
-    // If an error occurs during file writing, log the error and return a JSON response with a failure message and a 500 status code
-    console.log("Error occurred ", error);
-    return NextResponse.json({ Message: "Failed", status: 500 });
-  }
+//   // Check if a file is received
+//   if (!file) {
+//     // If no file is received, return a JSON response with an error and a 400 status code
+//     return NextResponse.json({ error: "No files received." }, { status: 400 });
+//   }
+
+//   // Convert the file data to a Buffer
+//   const buffer = Buffer.from(await file.arrayBuffer());
+
+//   // Replace spaces in the file name with underscores
+//   const filename = file.name.replaceAll(" ", "_");
+//   console.log(filename);
+
+//   
 };
