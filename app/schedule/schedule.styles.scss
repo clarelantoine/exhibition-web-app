@@ -1,3 +1,7 @@
+.schedule {
+    // padding-bottom: 30px;
+}
+
 .schedule__loader {
     position: absolute;
     top: 50%;
@@ -55,6 +59,7 @@
     flex-direction: row;
     margin: 0 auto;
     gap: 100px;
+    margin-bottom: 50px;
 }
 
 .schedule__days {
@@ -214,6 +219,30 @@
     .meetings {
         .meeting__card {
             flex-direction: column;
+            gap: 10px;
+
+
+            .meeting__detail {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                // max-width: 20%;
+                flex-grow: 1;
+
+                svg {
+                    fill: #6CBD4A;
+                }
+
+                &:first-child {
+                    max-width: unset;
+                }
+
+                &:nth-child(2) {
+                    max-width: unset;
+                    // color: red;
+                }
+            }
+
         }
     }
 
