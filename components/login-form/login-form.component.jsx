@@ -35,12 +35,12 @@ export default function LoginForm() {
 
     const {username, password} = formFields
 
-    if((username === 'admin' || username === 'Admin') && password === '123') {
+    if(((username === 'admin' || username === 'Admin') && password === '123') || ((username === 'booking' || username === 'Booking') && password === 'wds@sami2024')) {
         handleUserLogin(username)
         resetFormFields()
       
     } else {
-      alert('login error')
+      alert('Wrong credentials')
     }
 
     
