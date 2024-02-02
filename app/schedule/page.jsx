@@ -35,23 +35,7 @@ export default function Schedule () {
     }
 
     const getSelectedMeetingsDay = (day) => {
-        const selectedMeetingsDay = schedules.map(item => {
-            const splitDate = item.Schedule.split(" ")
-            
-
-            const newDate = splitDate[0]
-            const StartTime = splitDate[1]
-
-            const splitNewTime = StartTime.split(":")
-            let now = new Date();
-            const EndTime = now.setHours(splitNewTime[0], splitNewTime[1] + item.Durationm, 0, 0)
-
-            const newTime = `${StartTime} - ${EndTime}`
-
-
-
-            return {...item, Schedule: newDate, Time: StartTime}
-        }).filter(item => {
+        const selectedMeetingsDay = schedules.filter(item => {
             return parseInt(item.Day) === day
         })
 
@@ -78,6 +62,7 @@ export default function Schedule () {
                 <Link href="#" className="schedule__days__item" data-day="2" onClick={handleDayChange}>Day 2</Link>
                 <Link href="#" className="schedule__days__item" data-day="3" onClick={handleDayChange}>Day 3</Link>
                 <Link href="#" className="schedule__days__item" data-day="4" onClick={handleDayChange}>Day 4</Link>
+                <Link href="#" className="schedule__days__item" data-day="5" onClick={handleDayChange}>Day 5</Link>
             </aside>
             <main className="schedule__rooms">
                 <div className="rooms">
@@ -92,18 +77,15 @@ export default function Schedule () {
                             <div key={index} className="meeting__card">
                                 <span className="meeting__date meeting__detail">
                                     <CalendarMonthIcon />
-                                    {/* 20/02/2024 */}
-                                    {item.Schedule}
+                                    {item.Date}
                                 </span>
                                 <span className="meeting__time meeting__detail">
                                     <AccessTimeIcon />
-                                    {/* 14:30 - 15:00 */}
-                                    {item.Time}
+                                    {`${item.StartTime} - ${item.EndTime}`}
                                 </span>
                                 <span className="meeting__name meeting__detail">
                                     <PermIdentityIcon />
-                                    {/* John Doe */}
-                                    {item.Company}
+                                    {item.Name}
                                 </span>
                             </div>
                         ))
@@ -113,10 +95,18 @@ export default function Schedule () {
                     
                 </div>
             </main>
-            {/* <a href="/schedule/test">text link 1</a> */}
-            {/* <Link href='schedule/test'>text link</Link> */}
-            
-            {/* <RoomSchedule /> */}
+
         </div>
     )
 }
+
+// {
+//     "MeetingRoom": "2",
+//     "Day": "1",
+//     "Schedule": "15/02/24",
+//     "StartTime": "12:00",
+//     "EndTime": "14:00",
+//     "Email": "test@mail.com",
+//     "Name": "John Doe",
+//     "Company": "CA Studio"
+// }
