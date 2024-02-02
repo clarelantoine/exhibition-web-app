@@ -114,6 +114,11 @@
     gap: 20px;
     margin-top: 30px;
 
+    .noschedule__message {
+        text-align: center;
+        margin-top: 30px;
+    }
+
     .meeting__card {
         display: flex;
         flex-direction: row;
