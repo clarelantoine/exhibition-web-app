@@ -12,11 +12,17 @@ import { getMeetingSchedule } from "@/lib/firebase";
 import { useContext, useEffect, useState } from "react";
 import { ScheduleContext } from "@/contexts/schedule.context";
 
+const roomDefaultValues = {
+    previous: null,
+    selected: 0,
+    next: 1
+}
 export default function Schedule () {
     const {schedules} = useContext(ScheduleContext)
 
     const [meetings, setMeetings] = useState(null)
     const [day, setDay] = useState(1)
+    const [room, setRoom] = useState(0)
 
     const handleDayChange = (event) => {
 
@@ -34,9 +40,29 @@ export default function Schedule () {
         setDay(parseInt(dataset.day))
     }
 
-    const getSelectedMeetingsDay = (day) => {
+    const handleNextRoom = (event) => {
+        event.preventDefault()
+
+        const {dataset} = event.target
+
+        let nextIndex = room
+
+        if(dataset.btn === 'next') {
+            console.log('next');
+            // nextIndex += 1
+            if(nextIndex < 2) nextIndex += 1
+        } else {
+            console.log('prev');
+            // nextIndex -= 1
+            if(nextIndex > 0) nextIndex -= 1
+        }
+
+        setRoom(nextIndex)
+    }
+
+    const getSelectedMeetingsDay = (day, room) => {
         const selectedMeetingsDay = schedules.filter(item => {
-            return parseInt(item.Day) === day
+            return parseInt(item.Day) === day && parseInt(item.MeetingRoom) === room +1
         })
 
         setMeetings(selectedMeetingsDay)
@@ -44,9 +70,13 @@ export default function Schedule () {
 
     useEffect(() => {
         // console.log("day changed");
-        getSelectedMeetingsDay(day)
+        getSelectedMeetingsDay(day, room)
 
-    }, [day])
+    }, [day, room])
+
+    useEffect(() => {
+        console.log(room);
+    }, [room])
     
     useEffect(() => {
         // console.log("day changed");
@@ -66,9 +96,13 @@ export default function Schedule () {
             </aside>
             <main className="schedule__rooms">
                 <div className="rooms">
-                    <span className="room__navigation__arrow room__previous"><ArrowBackIosNewIcon /></span>
-                    <span className="room__name">{`room 1`}</span>
-                    <span className="room__navigation__arrow room__next"><ArrowForwardIosIcon /></span>
+                    <span className="room__navigation__arrow room__previous" data-btn="prev" onClick={handleNextRoom}><ArrowBackIosNewIcon /></span>
+                    {/* <span className="room__navigation__arrow room__previous" data-room={`${room.previous}`}><ArrowBackIosNewIcon /></span> */}
+                    <span className="room__name">{
+                        ['ALAUJA', 'ALMASMAK', 'TUWAIQ'][room]
+                    }</span>
+                    <span className="room__navigation__arrow room__next" data-btn="next" onClick={handleNextRoom}><ArrowForwardIosIcon /></span>
+                    {/* <span className="room__navigation__arrow room__next" data-room={`${room.next}`} onClick={handleNextRoom}><ArrowForwardIosIcon /></span> */}
                 </div>
                 <div className="meetings">
                     

@@ -99,6 +99,10 @@
         &:hover {
             background: #748D93;
         }
+
+        svg {
+            pointer-events: none;
+        }
     }
 
     .room__name {
@@ -122,8 +126,8 @@
     .meeting__card {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
-        gap: 5px;
+        // justify-content: space-between;
+        gap: 50px;
         padding: 20px;
         border-left: 10px solid #6CBD4A;
         background: #2A5968;
@@ -132,11 +136,21 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            // max-width: 20%;
+            flex-grow: 1;
 
             svg {
                 fill: #6CBD4A;
             }
 
+            &:first-child {
+                max-width: 20%;
+            }
+
+            &:nth-child(2) {
+                max-width: 20%;
+                // color: red;
+            }
         }
     }
 }
