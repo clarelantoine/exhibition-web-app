@@ -3,6 +3,7 @@ import { doc, getDoc } from "firebase/firestore";
 
 // import axios from 'axios';
 
+export const dynamic = 'force-dynamic' // defaults to auto
 export const revalidate = 0
 
 export async function GET() {
