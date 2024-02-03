@@ -1,6 +1,7 @@
 'use client'
 
-import { getMeetingSchedule } from "@/lib/firebase";
+import { db, getMeetingSchedule } from "@/lib/firebase";
+import { doc, onSnapshot } from "firebase/firestore";
 import { createContext, useEffect, useState } from "react";
 
 const getSchedulesData = async (setSchedules) => {
@@ -19,14 +20,13 @@ export const ScheduleProvider = ({children}) => {
     const [schedules, setSchedules] = useState(null)
 
     useEffect(() => {
-        getSchedulesData(setSchedules)
+        // getSchedulesData(setSchedules)
+
+        const unsubscribe = onSnapshot(doc(db, "schedules", "json"), (doc) => {
+            setSchedules(doc.data())
+        });
+        return unsubscribe;
     }, [])
-    
-    // useEffect(() => {
-    //     console.log(schedules)
-    // }, [schedules])
-
-
 
     const value = {
         schedules,

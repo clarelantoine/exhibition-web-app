@@ -1,6 +1,6 @@
 'use client'
 
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const { createContext, useState, useEffect } = require("react");
 
@@ -12,19 +12,11 @@ export const UserContext = createContext({
     checkLocalUser: () => null,
 })
 
-// const INITIAL_STATE = {
-//     currentUser: null
-// }
-
 export const UserProvider = ({children}) => {
 
     const [currentUser, setCurrentUser] = useState(null)
     
     const router = useRouter()
-
-    // const setCurrentUser = (user) => {
-
-    // }
 
     const handleUserLogin = (user) => {
 
@@ -38,7 +30,6 @@ export const UserProvider = ({children}) => {
         setCurrentUser(null)
         localStorage.removeItem('user')
         router.push('/')
-        console.log('logout');
     }
 
     const checkLocalUser = () => {
@@ -51,19 +42,19 @@ export const UserProvider = ({children}) => {
         }
     }
 
-
-
-   
     useEffect(() => {
         checkLocalUser()
     }, [])
 
 
-    const value = {currentUser, setCurrentUser, handleUserLogout, handleUserLogin, checkLocalUser}
+    const value = {
+        currentUser, 
+        setCurrentUser, 
+        handleUserLogout, 
+        handleUserLogin, 
+        checkLocalUser
+    }
 
-
-
-    
     return (
         <UserContext.Provider value={value}>{children}</UserContext.Provider>
     )

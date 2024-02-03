@@ -11,6 +11,7 @@ import './schedule.styles.scss'
 import { getMeetingSchedule } from "@/lib/firebase";
 import { useContext, useEffect, useState } from "react";
 import { ScheduleContext } from "@/contexts/schedule.context";
+import { convertDate } from "@/lib/utils";
 
 const roomDefaultValues = {
     previous: null,
@@ -35,7 +36,6 @@ export default function Schedule () {
         })
 
         event.target.classList.add('active')
-        // console.log(dataset.day);
 
         setDay(parseInt(dataset.day))
     }
@@ -48,12 +48,8 @@ export default function Schedule () {
         let nextIndex = room
 
         if(dataset.btn === 'next') {
-            console.log('next');
-            // nextIndex += 1
             if(nextIndex < 2) nextIndex += 1
         } else {
-            console.log('prev');
-            // nextIndex -= 1
             if(nextIndex > 0) nextIndex -= 1
         }
 
@@ -61,29 +57,23 @@ export default function Schedule () {
     }
 
     const getSelectedMeetingsDay = (day, room) => {
-        const selectedMeetingsDay = schedules.filter(item => {
+
+        // filter metings by selected day & room
+        const selectedMeetingsDay = schedules.data.filter(item => {
             return parseInt(item.Day) === day && parseInt(item.MeetingRoom) === room +1
         })
 
-        setMeetings(selectedMeetingsDay)
+        // sort selected meeting by time
+        const sorted = selectedMeetingsDay.sort((a, b) => {
+            return new Date(convertDate(a.Date) + a.StartTime) - new Date(convertDate(b.Date) + b.StartTime);
+        })
+
+        setMeetings(sorted)
     }
 
     useEffect(() => {
-        // console.log("day changed");
         getSelectedMeetingsDay(day, room)
-
-    }, [day, room])
-
-    useEffect(() => {
-        console.log(room);
-    }, [room])
-    
-    useEffect(() => {
-        // console.log("day changed");
-        console.log(meetings);
-
-    }, [meetings])
-    
+    }, [day, room, schedules])
 
     return (
         <div className="schedule__wrapper">
@@ -133,14 +123,3 @@ export default function Schedule () {
         </div>
     )
 }
-
-// {
-//     "MeetingRoom": "2",
-//     "Day": "1",
-//     "Schedule": "15/02/24",
-//     "StartTime": "12:00",
-//     "EndTime": "14:00",
-//     "Email": "test@mail.com",
-//     "Name": "John Doe",
-//     "Company": "CA Studio"
-// }
