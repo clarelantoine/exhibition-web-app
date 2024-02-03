@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic' // defaults to auto
+
 // Import necessary modules
 import { db, uploadJSONFileToStorage } from "@/lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
