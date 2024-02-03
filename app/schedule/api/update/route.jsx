@@ -1,6 +1,7 @@
 // Import necessary modules
 import { db, uploadJSONFileToStorage } from "@/lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
+import { revalidatePath } from 'next/cache'
 
 // export const revalidate = 0
 
@@ -18,9 +19,12 @@ export const POST = async (req, res) => {
                 await setDoc(doc(db, "schedules", "json"), {data: [].concat(data.VentuzXml.Meeting)});
             }
             
+            revalidatePath('/schedule/api/update')
             return Response.json({ Message: "Success, JSON has been updated", status: 201 });
 
         } catch (error) {
+
+            revalidatePath('/schedule/api/update')
             return Response.json({ Message: `Error in updating the JSON:' ${error.message}`, status: 500 });
         }
     }
