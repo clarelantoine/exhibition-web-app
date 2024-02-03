@@ -5,6 +5,8 @@ import { doc, getDoc } from "firebase/firestore";
 
 export const dynamic = 'force-dynamic' // defaults to auto
 export const revalidate = 0
+export const fetchCache = 'force-no-store'
+
 
 export async function GET() {
 

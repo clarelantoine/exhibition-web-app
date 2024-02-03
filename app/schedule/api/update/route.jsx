@@ -4,6 +4,8 @@ import { doc, setDoc } from "firebase/firestore";
 
 export const dynamic = 'force-dynamic' // defaults to auto
 export const revalidate = 0
+export const fetchCache = 'force-no-store'
+
 
 // Define the POST handler for the file upload
 export const POST = async (req, res) => {
