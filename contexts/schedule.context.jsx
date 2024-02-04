@@ -22,7 +22,7 @@ export const ScheduleProvider = ({children}) => {
     useEffect(() => {
         // getSchedulesData(setSchedules)
 
-        const unsubscribe = onSnapshot(doc(db, "schedules", "json"), (doc) => {
+        const unsubscribe = onSnapshot(doc(db, "schedules", "jsonTest"), (doc) => {
             setSchedules(doc.data())
         });
         return unsubscribe;

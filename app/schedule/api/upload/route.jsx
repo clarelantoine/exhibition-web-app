@@ -13,7 +13,7 @@ export async function POST (req) {
     // console.log(req);
     // if(req.method === "POST") {
 
-        // console.log(req.status);
+        console.log(req.status);
         
         // console.log("data:", data)
 
@@ -23,9 +23,9 @@ export async function POST (req) {
                 // await uploadJSONFileToStorage(data);
                 // let dataArray = []
                 if(!data.VentuzXml.Meeting) {
-                    await setDoc(doc(db, "schedules", "json"), {data: []});
+                    await setDoc(doc(db, "schedules", "jsonTest"), {data: []});
                 }else {
-                    await setDoc(doc(db, "schedules", "json"), {data: [].concat(data.VentuzXml.Meeting)});
+                    await setDoc(doc(db, "schedules", "jsonTest"), {data: [].concat(data.VentuzXml.Meeting)});
                 }
                 // revalidatePath('/schedule/api/update')
                 return Response.json({ Message: "Success, JSON has been updated", status: 201 });
