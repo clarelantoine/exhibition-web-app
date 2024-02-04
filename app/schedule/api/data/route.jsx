@@ -11,7 +11,7 @@ export async function GET() {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-            revalidatePath('/schedule/api/data')
+            // revalidatePath('/schedule/api/data')
             return Response.json(docSnap.data())
         }
 
