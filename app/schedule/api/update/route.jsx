@@ -12,21 +12,29 @@ import { revalidatePath } from "next/cache";
 export async function POST (req) {
     // console.log(req);
     // if(req.method === "POST") {
-        const data = await req.json();
-        try {
-            // await uploadJSONFileToStorage(data);
-            // let dataArray = []
-            if(!data.VentuzXml.Meeting) {
-                await setDoc(doc(db, "schedules", "json"), {data: []});
-            }else {
-                await setDoc(doc(db, "schedules", "json"), {data: [].concat(data.VentuzXml.Meeting)});
-            }
-            revalidatePath('schedule/api/update')
-            return Response.json({ revalidated: true, Message: "Success, JSON has been updated", status: 201 });
 
-        } catch (error) {
-            revalidatePath('schedule/api/update')
-            return Response.json({ revalidated: true, Message: `Error in updating the JSON:' ${error.message}`, status: 500 });
-        }
+
+        
+        // console.log("data:", data)
+
+        // if(data) {
+            try {
+                const data = await req.json();
+                // await uploadJSONFileToStorage(data);
+                // let dataArray = []
+                if(!data.VentuzXml.Meeting) {
+                    await setDoc(doc(db, "schedules", "json"), {data: []});
+                }else {
+                    await setDoc(doc(db, "schedules", "json"), {data: [].concat(data.VentuzXml.Meeting)});
+                }
+                revalidatePath('/schedule/api/update')
+                return Response.json({ Message: "Success, JSON has been updated", status: 201 });
+    
+            } catch (error) {
+                revalidatePath('/schedule/api/update')
+                return Response.json({ Message: `Error in updating the JSON:' ${error.message}`, status: 500 });
+            }
+        // }
+        
     // }
 };
