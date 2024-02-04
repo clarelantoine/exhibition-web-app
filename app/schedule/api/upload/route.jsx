@@ -13,7 +13,7 @@ export async function POST (req) {
     // console.log(req);
     // if(req.method === "POST") {
 
-        console.log(req.status);
+        // console.log(req.status);
         
         // console.log("data:", data)
 
