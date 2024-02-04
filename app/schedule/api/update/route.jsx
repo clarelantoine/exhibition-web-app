@@ -9,7 +9,7 @@ import { revalidatePath } from "next/cache";
 
 
 // Define the POST handler for the file upload
-export async function POST (req, res) {
+export async function POST (req) {
     // console.log(req);
     // if(req.method === "POST") {
         const data = await req.json();
