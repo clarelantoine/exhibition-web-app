@@ -7,34 +7,20 @@ import { revalidatePath } from "next/cache";
 // export const revalidate = 0
 // export const fetchCache = 'force-no-store'
 
-
-// Define the POST handler for the file upload
 export async function POST (req) {
-    // console.log(req);
-    // if(req.method === "POST") {
-
-        // console.log(req.status);
+  
+    try {
+        const data = await req.json();
         
-        // console.log("data:", data)
+        if(!data.VentuzXml.Meeting) {
+            await setDoc(doc(db, "schedules", "json"), {data: []});
+        }else {
+            await setDoc(doc(db, "schedules", "json"), {data: [].concat(data.VentuzXml.Meeting)});
+        }
+        return Response.json({ Message: "Success, JSON has been updated", status: 201 });
 
-        // if(data) {
-            try {
-                const data = await req.json();
-                // await uploadJSONFileToStorage(data);
-                // let dataArray = []
-                if(!data.VentuzXml.Meeting) {
-                    await setDoc(doc(db, "schedules", "json"), {data: []});
-                }else {
-                    await setDoc(doc(db, "schedules", "json"), {data: [].concat(data.VentuzXml.Meeting)});
-                }
-                // revalidatePath('/schedule/api/update')
-                return Response.json({ Message: "Success, JSON has been updated", status: 201 });
-    
-            } catch (error) {
-                // revalidatePath('/schedule/api/update')
-                return Response.json({ Message: `Error in updating the JSON:' ${error.message}`, status: 500 });
-            }
-        // }
-        
-    // }
+    } catch (error) {
+        return Response.json({ Message: `Error in updating the JSON:' ${error.message}`, status: 500 });
+    }
+
 };
