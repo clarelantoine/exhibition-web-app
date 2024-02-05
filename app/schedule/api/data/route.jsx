@@ -1,8 +1,7 @@
 import {db, getJSONFileFromStorage } from '@/lib/firebase';
 import { doc, getDoc } from "firebase/firestore";
-import { revalidatePath } from 'next/cache';
 
-// import axios from 'axios';
+export const revalidate = 0
 
 export async function GET() {
 
@@ -11,7 +10,6 @@ export async function GET() {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-            // revalidatePath('/schedule/api/data')
             return Response.json(docSnap.data())
         }
 
